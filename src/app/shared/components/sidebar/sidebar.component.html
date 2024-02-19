@@ -1,0 +1,52 @@
+<aside id="logo-sidebar"
+   class="fixed mt-3 top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+   aria-label="Sidebar">
+   <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+      <ul class="space-y-2 font-medium">
+         <li>
+            <form class="max-w-sm mx-auto">
+               <select id="comunidades" (change)="onChange($event)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>C. Aut&oacute;nomas</option>
+                  @for (item of listasComunidades(); track $index) {
+                     <option [value]="item.id">{{item.nombre}}</option>
+                  }
+               </select>
+            </form>
+         </li>
+         <li>
+            <form class="max-w-sm mx-auto">
+               <select id="provincias" (change)="onChangeProvincia($event)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Provincias</option>
+                  @for (item of listasProvincias(); track $index) {
+                     <option [value]="item.id">{{item.nombre}}</option>
+                  }
+               </select>
+            </form>
+         </li>
+         <li>
+            <form class="max-w-sm mx-auto">
+               <select id="provincias" (change)="onChangeMunicipio($event)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Municipios</option>
+                  @for (item of listasMunicipios(); track $index) {
+                     <option [value]="item.id">{{item.nombre}}</option>
+                  }
+               </select>
+            </form>
+         </li>
+         <li>
+            <a href="/map"
+               class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                     d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
+               </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Mapa</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+</aside>

@@ -1,0 +1,123 @@
+<!-- <google-map 
+  height="400px"
+  width="750px"
+  [center]="center"
+  [zoom]="zoom"
+  [options]="options" />
+ -->
+<div class=" flex justify-center pt-10">
+
+    <section class="bg-white dark:bg-gray-900 rounded-md shadow-2xl">
+        <div class="p-4 md:mt-0">
+            <h2
+                class="mb-4 text-2xl text-center flex items-center justify-center tracking-tight font-extrabold text-gray-900 dark:text-white">
+                {{ gasolinera.municipio }}
+                <button (click)="verInfoGasolinera()">
+                <svg class="flex-shrink-0 inline ml-2 w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                </button>
+            </h2>
+            <p class="text-lg text-gray-500 truncate text-center dark:text-gray-400">
+                {{ gasolinera.direccion }}
+            </p>
+            @if(verInfo()){
+            <div class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                  <span class="font-medium">Informaci&oacute;n:</span> para saber como llegar a esta gasolinera, haz click en el icono de la gasolinera y después en el botón de
+                  "Ver en Google Maps".
+                </div>
+              </div>
+            }
+        </div>
+        <div class="gap-8 items-center pb-4  px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 lg:px-6">
+            <div class="mapa rounded-lg h-full">
+                <google-map class="mb-4 md:mb-0" [center]="center" [zoom]="zoom" [options]="options" />
+            </div>
+            <div class="relative overflow-x-auto shadow-md shadow-gray-600 sm:rounded-lg ">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Tipo Gasolina
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Precio
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Gasoleo A
+                            </th>
+                            <td class="px-6 py-4">
+                                @if(gasolinera.precioGasoleoA != null && gasolinera.precioGasoleoA != ''){
+                                {{ gasolinera.precioGasoleoA }} &euro;
+                                }@else {
+                                No disponible
+                                }
+                            </td>
+                        </tr>
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Gasoleo B
+                            </th>
+                            <td class="px-6 py-4">
+                                @if(gasolinera.precioGasoleoB != null && gasolinera.precioGasoleoB != ''){
+                                {{ gasolinera.precioGasoleoB }} &euro;
+                                }@else {
+                                No disponible
+                                }
+                            </td>
+                        </tr>
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Gasoleo 95
+                            </th>
+                            <td class="px-6 py-4">
+                                @if(gasolinera.precioGasolina95 != null && gasolinera.precioGasolina95 != ''){
+                                {{ gasolinera.precioGasolina95 }} &euro;
+                                }@else {
+                                No disponible
+                                }
+                            </td>
+                        </tr>
+                        <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Gasolina 98
+                            </th>
+                            <td class="px-6 py-4">
+                                @if(gasolinera.precioGasolina98 != null && gasolinera.precioGasolina98 != ''){
+                                {{ gasolinera.precioGasolina98 }} &euro;
+                                }@else {
+                                No disponible
+                                }
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                    <div class="flex items-center justify-center mt-3">
+                        <button type="button" (click)="ponerBotonenFalse()"
+                            class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">
+                            Volver
+                        </button>
+                    </div>
+                
+            </div>
+
+        </div>
+    </section>
+</div>

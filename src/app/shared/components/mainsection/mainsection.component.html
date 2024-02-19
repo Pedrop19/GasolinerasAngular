@@ -1,0 +1,79 @@
+<div class=" sm:ml-64  min-h-screen dark:bg-gray-800" style="margin-top: 4.8rem;">
+    <div class="p-4   rounded-lg  flex flex-wrap items-center justify-center">
+     @if(primeravez()){
+        <app-welcome></app-welcome>
+     }@else {
+        @if(loading()){
+        @for (i of [].constructor(12); track $index) {
+        <div
+            class="max-w-sm p-5 ml-2 mb-2 w-80 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+            <div role="status"
+                class="max-w-md p-5 space-y-4 divide-y divide-gray-200 animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                </div>
+                <div class="flex items-center justify-between pt-4">
+                    <div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                        <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                </div>
+                <div class="flex items-center justify-center mt-4">
+                    <div class="w-20 h-2.5 mt-4 bg-gray-200  rounded-full dark:bg-gray-700 me-3"></div>
+                </div>
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        }
+        }@else if(nohayGasolineras()){
+        <div class="flex items-center justify-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only"></span>
+            <div>
+                No hay gasolineras en este municipio, por favor seleccione otro municipio.
+            </div>
+        </div>
+        }@else if(botonClickado()){
+            <app-card-map></app-card-map>
+        }@else {
+        @for (item of listaGasolinerasMunicipio; track $index) {
+        <app-card [gasolinera]="item"></app-card>
+        }
+        }
+     }
+       
+    </div>
+</div>
+

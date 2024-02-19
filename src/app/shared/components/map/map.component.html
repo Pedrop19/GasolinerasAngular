@@ -1,0 +1,22 @@
+<div class=" sm:ml-64  min-h-screen dark:bg-gray-800" style="margin-top: 4.8rem;">
+    <div class="map justify-center flex-col items-center flex h-screen">
+        <div class="flex  items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+            <span class="font-medium">Informaci&oacute;n:</span> para saber como llegar a la gasolinera que has seleccionado, copia las coordenadas 
+            clickando en en el boton copiar y haz click en este enlace: <a href="https://www.google.com/maps" target="_blank" class="text-blue-800 dark:text-blue-400">Google Maps</a>
+            </div>
+        </div>
+        <div class="part2 flex">
+            <google-map width="900px" height="800px" [center]="center" [zoom]="zoom" [options]="options">
+                @for (marker of markers; track marker) {
+                <map-marker [position]="marker.position" (mapClick)="mostrarInfo($event)"></map-marker>
+                }
+            </google-map>
+            <app-card [gasolinera]="gasolinera"></app-card>
+        </div>
+    </div>
+</div>
